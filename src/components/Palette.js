@@ -1,3 +1,4 @@
+import Navbar from "./Navbar";
 import ColorBox from "./ColorBox";
 import "./Palette.css";
 
@@ -10,6 +11,7 @@ const Palette = (props) => {
 
 	return (
 		<div className="Palette">
+			<Navbar />
 			<div className="Palette-colors">{colorBoxes}</div>
 		</div>
 	);
