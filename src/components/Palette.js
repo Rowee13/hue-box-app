@@ -1,9 +1,16 @@
-import React from "react";
+import ColorBox from "./ColorBox";
+import "./Palette.css";
 
-const Palette = () => {
+// ________________________________________________________________
+
+const Palette = (props) => {
+	const colorBoxes = props.colors.map((color) => {
+		return <ColorBox background={color.color} name={color.name} />;
+	});
+
 	return (
-		<div>
-			<h1>This is the palette component</h1>
+		<div className="Palette">
+			<div className="Palette-colors">{colorBoxes}</div>
 		</div>
 	);
 };
