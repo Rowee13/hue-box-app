@@ -5,37 +5,37 @@ import "./ColorBox.css";
 
 // ________________________________________________________________
 
-const ColorBox = (props) => {
-	const [copyColor, setCopyColor] = useState(false);
+const ColorBox = (palettes) => {
+  const [copyColor, setCopyColor] = useState(false);
 
-	const handleCopyColor = () => {
-		setCopyColor(true);
-		setTimeout(() => {
-			setCopyColor(false);
-		}, 1500);
-	};
+  const handleCopyColor = () => {
+    setCopyColor(true);
+    setTimeout(() => {
+      setCopyColor(false);
+    }, 1500);
+  };
 
-	return (
-		<CopyToClipboard text={props.background} onCopy={handleCopyColor}>
-			<div className="ColorBox" style={{ background: props.background }}>
-				<div
-					style={{ background: props.background }}
-					className={`copy-overlay ${copyColor && " show"}`}
-				/>
-				<div className={`copy-msg ${copyColor && " show"}`}>
-					<h1>copied</h1>
-					<p>{props.background}</p>
-				</div>
-				<div className="copy-container">
-					<div className="box-content">
-						<span>{props.name}</span>
-					</div>
-					<button className="copy-button">Copy</button>
-					<span className="see-more">More</span>
-				</div>
-			</div>
-		</CopyToClipboard>
-	);
+  return (
+    <CopyToClipboard text={palettes.background} onCopy={handleCopyColor}>
+      <div className="ColorBox" style={{ background: palettes.background }}>
+        <div
+          style={{ background: palettes.background }}
+          className={`copy-overlay ${copyColor && " show"}`}
+        />
+        <div className={`copy-msg ${copyColor && " show"}`}>
+          <h1>copied</h1>
+          <p>{palettes.background}</p>
+        </div>
+        <div className="copy-container">
+          <div className="box-content">
+            <span>{palettes.name}</span>
+          </div>
+          <button className="copy-button">Copy</button>
+          <span className="see-more">More</span>
+        </div>
+      </div>
+    </CopyToClipboard>
+  );
 };
 
 export default ColorBox;
