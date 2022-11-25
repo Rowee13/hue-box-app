@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import PaletteList from "./components/PaletteList";
 import Palette from "./components/Palette";
 import SeedPalettes from "./SeedPalettes";
-import "./App.css";
 
 // ________________________________________________________________
 

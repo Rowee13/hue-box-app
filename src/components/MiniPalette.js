@@ -14,7 +14,11 @@ const RootDiv = styled.div`
   }
 `;
 const ColorDiv = styled.div`
-  background-color: grey;
+  background-color: #dae1e4;
+  height: 150px;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 const PaletteTitle = styled.h5`
   display: flex;
@@ -22,7 +26,7 @@ const PaletteTitle = styled.h5`
   align-items: center;
   margin: 0;
   color: black;
-  padding-top: 0.5rem;
+  padding: 0.75rem 0;
   font-size: 1rem;
   position: relative;
 `;
@@ -30,13 +34,27 @@ const Emoji = styled.span`
   margin-left: 0.5rem;
   font-size: 1.5rem;
 `;
+const MiniColorDiv = styled.div`
+  height: 25%;
+  width: 20%;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: -3px;
+`;
 
 const MiniPalette = (props) => {
+  const { paletteName, emoji, colors } = props;
+
+  const miniColorBoxes = colors.map((color) => (
+    <MiniColorDiv style={{ backgroundColor: color.color }} key={color.name} />
+  ));
+
   return (
     <RootDiv>
-      <ColorDiv></ColorDiv>
+      <ColorDiv>{miniColorBoxes}</ColorDiv>
       <PaletteTitle>
-        {props.paletteName} <Emoji>{props.emoji}</Emoji>
+        {paletteName} <Emoji>{emoji}</Emoji>
       </PaletteTitle>
     </RootDiv>
   );

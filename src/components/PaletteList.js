@@ -6,13 +6,13 @@ import MiniPalette from "./MiniPalette";
 
 const MainDiv = styled.div`
   background-color: blue;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 `;
 const Container = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
