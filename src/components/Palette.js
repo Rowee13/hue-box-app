@@ -30,6 +30,8 @@ const Palette = () => {
         background={color[colorFormat]}
         name={color.name}
         key={color.id}
+        colorId={color.id}
+        paletteId={paletteId}
       />
     );
   });

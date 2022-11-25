@@ -6,7 +6,7 @@ import "./ColorBox.css";
 
 // ________________________________________________________________
 
-const ColorBox = (palettes) => {
+const ColorBox = (palettes, paletteId, colorId) => {
   const [copyColor, setCopyColor] = useState(false);
 
   const handleCopyColor = () => {
@@ -33,7 +33,10 @@ const ColorBox = (palettes) => {
           </div>
           <button className="copy-button">Copy</button>
         </div>
-        <Link to="/" onClick={(e) => e.stopPropagation()}>
+        <Link
+          to={`/palette/${paletteId}/${colorId}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           <span className="see-more">More</span>
         </Link>
       </div>
