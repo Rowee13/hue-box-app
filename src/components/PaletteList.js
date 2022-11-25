@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { v4 as uuidv4 } from "uuid";
 
 import MiniPalette from "./MiniPalette";
 
@@ -41,7 +42,7 @@ const PaletteList = ({ palettes }) => {
         </Nav>
         <PaletteDiv>
           {palettes.map((palette) => (
-            <MiniPalette {...palette} />
+            <MiniPalette {...palette} key={uuidv4()} />
           ))}
         </PaletteDiv>
       </Container>

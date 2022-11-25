@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 // ________________________________________________________________
 
@@ -26,7 +28,7 @@ const PaletteTitle = styled.h5`
   align-items: center;
   margin: 0;
   color: black;
-  padding: 0.75rem 0;
+  padding: 0.5rem 0 1.5rem;
   font-size: 1rem;
   position: relative;
 `;
@@ -44,14 +46,20 @@ const MiniColorDiv = styled.div`
 `;
 
 const MiniPalette = (props) => {
-  const { paletteName, emoji, colors } = props;
+  const { paletteName, emoji, colors, id } = props;
+  const history = useNavigate();
+
+  const goToPalette = (e) => {
+    e.preventDefault();
+    history(`/palette/${id}`);
+  };
 
   const miniColorBoxes = colors.map((color) => (
-    <MiniColorDiv style={{ backgroundColor: color.color }} key={color.name} />
+    <MiniColorDiv style={{ backgroundColor: color.color }} key={uuidv4()} />
   ));
 
   return (
-    <RootDiv>
+    <RootDiv onClick={goToPalette}>
       <ColorDiv>{miniColorBoxes}</ColorDiv>
       <PaletteTitle>
         {paletteName} <Emoji>{emoji}</Emoji>
