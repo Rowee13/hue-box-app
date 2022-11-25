@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Select,
@@ -16,32 +15,28 @@ import "./Navbar.css";
 
 // ________________________________________________________________
 
-const Navbar = (palettes) => {
-  const [colorFormat, setColorFormat] = useState("hex");
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-
-  const handleFormatChange = (e) => {
-    setColorFormat(e.target.value);
-  };
-
-  const closeSnackbar = () => {
-    setSnackbarOpen(false);
-  };
-
+const Navbar = ({
+  colorLevel,
+  changeColorLevel,
+  colorFormat,
+  changeColorFormat,
+  snackbarOpen,
+  closeSnackbar,
+}) => {
   return (
     <header className="Navbar">
       <div className="logo">
-        <Link>Hue Box</Link>
+        <Link to="/">Hue Box</Link>
       </div>
       <div className="slider-container">
-        <span>Level: {palettes.colorLevel}</span>
+        <span>Level: {colorLevel}</span>
         <div className="slider">
           <Slider
             min={100}
             max={900}
             step={100}
-            defaultValue={palettes.colorLevel}
-            onChange={palettes.changeLevel}
+            defaultValue={colorLevel}
+            onAfterChange={changeColorLevel}
           />
         </div>
       </div>
@@ -50,10 +45,10 @@ const Navbar = (palettes) => {
           <InputLabel id="demo-simple-select-standard-label">
             Color Format
           </InputLabel>
-          <Select value={colorFormat} onChange={handleFormatChange}>
-            <MenuItem>HEX - #ffffff</MenuItem>
-            <MenuItem>RGB - rgb(255, 255, 255)</MenuItem>
-            <MenuItem>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+          <Select value={colorFormat} onChange={changeColorFormat}>
+            <MenuItem value="hex">HEX - #ffffff</MenuItem>
+            <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
+            <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
           </Select>
         </FormControl>
       </div>

@@ -1,34 +1,70 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import ColorBox from "./ColorBox";
+import SeedPalettes from "../SeedPalettes";
+import { generatePalette } from "../helpers/colorHelper";
 import "./Palette.css";
 
 // ________________________________________________________________
 
-const Palette = (palettes, colorFormat, paletteName, emoji) => {
+const Palette = () => {
   const [colorLevel, setColorLevel] = useState(500);
+  const [colorFormat, setColorFormat] = useState("hex");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  const colorBoxes = palettes.colors.map((color) => {
-    return <ColorBox background={color.color} name={color.name} />;
+  const { paletteId } = useParams();
+
+  const findPalette = (id) => {
+    return SeedPalettes.find(function (palette) {
+      return palette.id === id;
+    });
+  };
+
+  const palette = generatePalette(findPalette(paletteId));
+
+  const colorBoxes = palette.colors[colorLevel].map((color) => {
+    return (
+      <ColorBox
+        background={color[colorFormat]}
+        name={color.name}
+        key={color.id}
+      />
+    );
   });
 
-  const handleChangeLevel = () => {
+  const changeColorLevel = (colorLevel) => {
     setColorLevel(colorLevel);
     console.log(colorLevel);
+  };
+
+  const changeColorFormat = (e) => {
+    setColorFormat(e.target.value);
+    setSnackbarOpen(true);
+    setTimeout(() => {
+      setSnackbarOpen(false);
+    }, 3000);
+  };
+
+  const closeSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   return (
     <div className="Palette">
       <Navbar
-        level={colorLevel}
-        handleChangeLevel={handleChangeLevel}
-        handleChangeColorFormat={colorFormat}
+        colorLevel={colorLevel}
+        changeColorLevel={changeColorLevel}
+        colorFormat={colorFormat}
+        changeColorFormat={changeColorFormat}
+        snackbarOpen={snackbarOpen}
+        closeSnackbar={closeSnackbar}
       />
       <div className="Palette-colors">{colorBoxes}</div>
       <footer className="Palette-footer">
-        {paletteName}
-        <span className="emoji">{emoji}</span>
+        {palette.paletteName}
+        <span className="emoji">{palette.emoji}</span>
       </footer>
     </div>
   );
