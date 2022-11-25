@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import MiniPalette from "./MiniPalette";
 
 // ________________________________________________________________
 
@@ -6,10 +6,9 @@ const PaletteList = ({ palettes }) => {
   return (
     <div>
       <h1>Hue Box</h1>
+      <MiniPalette />
       {palettes.map((palette) => (
-        <p>
-          <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-        </p>
+        <MiniPalette {...palette} />
       ))}
     </div>
   );
