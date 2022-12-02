@@ -11,10 +11,13 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<PaletteList palettes={SeedPalettes} />} />
-      <Route path="/palette/:paletteId" element={<Palette />} />
+      <Route
+        path="/palette/:paletteId"
+        element={<Palette palettes={SeedPalettes} />}
+      />
       <Route
         path="/palette/:paletteId/:colorId"
-        element={<SingleColorPalette />}
+        element={<SingleColorPalette palettes={SeedPalettes} />}
       />
     </Routes>
   );
