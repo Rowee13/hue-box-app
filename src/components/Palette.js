@@ -33,7 +33,8 @@ const Palette = () => {
         key={color.id}
         colorId={color.id}
         paletteId={paletteId}
-        palettes={color[colorFormat]}
+        palettes={palette}
+        showLink
       />
     );
   });
