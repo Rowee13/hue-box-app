@@ -6,7 +6,7 @@ import "./ColorBox.css";
 
 // ________________________________________________________________
 
-const ColorBox = (palettes, paletteId, colorId) => {
+const ColorBox = ({ background, name, paletteId, colorId, showLink }) => {
   const [copyColor, setCopyColor] = useState(false);
 
   const handleCopyColor = () => {
@@ -17,28 +17,31 @@ const ColorBox = (palettes, paletteId, colorId) => {
   };
 
   return (
-    <CopyToClipboard text={palettes.background} onCopy={handleCopyColor}>
-      <div className="ColorBox" style={{ background: palettes.background }}>
+    <CopyToClipboard text={background} onCopy={handleCopyColor}>
+      <div className="ColorBox" style={{ background }}>
         <div
-          style={{ background: palettes.background }}
+          style={{ background }}
           className={`copy-overlay ${copyColor && " show"}`}
         />
         <div className={`copy-msg ${copyColor && " show"}`}>
           <h1>copied</h1>
-          <p>{palettes.background}</p>
+          <p>{background}</p>
         </div>
         <div className="copy-container">
           <div className="box-content">
-            <span>{palettes.name}</span>
+            <span>{name}</span>
           </div>
           <button className="copy-button">Copy</button>
         </div>
-        <Link
-          to={`/palette/${paletteId}/${colorId}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <span className="see-more">More</span>
-        </Link>
+        {showLink && (
+          <Link
+            to={`/palette/${paletteId}/${colorId}`}
+            onClick={(e) => e.stopPropagation()}
+            colorId={colorId}
+          >
+            <span className="see-more">More</span>
+          </Link>
+        )}
       </div>
     </CopyToClipboard>
   );

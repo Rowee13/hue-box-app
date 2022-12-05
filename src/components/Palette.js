@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import ColorBox from "./ColorBox";
 import SeedPalettes from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
+
 import "./Palette.css";
 
 // ________________________________________________________________
@@ -32,13 +33,14 @@ const Palette = () => {
         key={color.id}
         colorId={color.id}
         paletteId={paletteId}
+        palettes={palette}
+        showLink
       />
     );
   });
 
   const changeColorLevel = (colorLevel) => {
     setColorLevel(colorLevel);
-    console.log(colorLevel);
   };
 
   const changeColorFormat = (e) => {

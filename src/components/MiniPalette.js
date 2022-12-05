@@ -45,8 +45,7 @@ const MiniColorDiv = styled.div`
   margin-bottom: -3px;
 `;
 
-const MiniPalette = (props) => {
-  const { paletteName, emoji, colors, id } = props;
+const MiniPalette = ({ paletteName, emoji, colors, id }) => {
   const history = useNavigate();
 
   const goToPalette = (e) => {
