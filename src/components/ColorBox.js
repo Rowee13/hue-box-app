@@ -37,7 +37,6 @@ const ColorBox = ({ background, name, paletteId, colorId, showLink }) => {
           <Link
             to={`/palette/${paletteId}/${colorId}`}
             onClick={(e) => e.stopPropagation()}
-            colorId={colorId}
           >
             <span className="see-more">More</span>
           </Link>

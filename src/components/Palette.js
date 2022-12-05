@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
 import SeedPalettes from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
@@ -64,12 +65,14 @@ const Palette = () => {
         changeColorFormat={changeColorFormat}
         snackbarOpen={snackbarOpen}
         closeSnackbar={closeSnackbar}
+        showColorSlider
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      <footer className="Palette-footer">
-        {palette.paletteName}
-        <span className="emoji">{palette.emoji}</span>
-      </footer>
+      <PaletteFooter
+        paletteName={palette.paletteName}
+        colorId=""
+        emoji={palette.emoji}
+      />
     </div>
   );
 };

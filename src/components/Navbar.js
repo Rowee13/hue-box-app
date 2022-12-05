@@ -22,24 +22,27 @@ const Navbar = ({
   changeColorFormat,
   snackbarOpen,
   closeSnackbar,
+  showColorSlider,
 }) => {
   return (
     <header className="Navbar">
       <div className="logo">
         <Link to="/">Hue Box</Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {colorLevel}</span>
-        <div className="slider">
-          <Slider
-            min={100}
-            max={900}
-            step={100}
-            defaultValue={colorLevel}
-            onAfterChange={changeColorLevel}
-          />
+      {showColorSlider && (
+        <div className="slider-container">
+          <span>Level: {colorLevel}</span>
+          <div className="slider">
+            <Slider
+              min={100}
+              max={900}
+              step={100}
+              defaultValue={colorLevel}
+              onAfterChange={changeColorLevel}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="select-container">
         <FormControl variant="standard">
           <InputLabel id="demo-simple-select-standard-label">

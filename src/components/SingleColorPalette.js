@@ -1,14 +1,17 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import SeedPalettes from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
 
 import ColorBox from "./ColorBox";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 
 // ________________________________________________________________
 
 const SingleColorPalette = () => {
-  // const [colorShades, setColorShades] = useState([]);
+  const [colorFormat, setColorFormat] = useState("hex");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const { paletteId, colorId } = useParams();
 
@@ -36,17 +39,40 @@ const SingleColorPalette = () => {
 
   const colorBoxex = shades.map((color) => (
     <ColorBox
-      key={color.id}
+      key={`${color.id} ${color.name}`}
       name={color.name}
-      background={color.hex}
+      background={color[colorFormat]}
       showLink={false}
     />
   ));
 
+  const changeColorFormat = (e) => {
+    setColorFormat(e.target.value);
+    setSnackbarOpen(true);
+    setTimeout(() => {
+      setSnackbarOpen(false);
+    }, 3000);
+  };
+
+  const closeSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
     <div className="Palette">
-      <h1>SingleColorPalette</h1>
+      <Navbar
+        colorFormat={colorFormat}
+        changeColorFormat={changeColorFormat}
+        snackbarOpen={snackbarOpen}
+        closeSnackbar={closeSnackbar}
+        showColorSlider={false}
+      />
       <div className="Palette-colors">{colorBoxex}</div>
+      <PaletteFooter
+        paletteName={paletteId}
+        colorId={`/ ${colorId}`}
+        emoji={palette.emoji}
+      />
     </div>
   );
 };
