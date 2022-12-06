@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import SeedPalettes from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
 
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
+
+import "./ColorBox.css";
 
 // ________________________________________________________________
 
@@ -59,7 +61,7 @@ const SingleColorPalette = () => {
   };
 
   return (
-    <div className="Palette">
+    <div className=" SingleColorPalette Palette">
       <Navbar
         colorFormat={colorFormat}
         changeColorFormat={changeColorFormat}
@@ -67,7 +69,14 @@ const SingleColorPalette = () => {
         closeSnackbar={closeSnackbar}
         showColorSlider={false}
       />
-      <div className="Palette-colors">{colorBoxex}</div>
+      <div className="Palette-colors">
+        {colorBoxex}
+        <div className="go-back ColorBox">
+          <Link to={`/palette/${paletteId}`} className="back-button">
+            GO BACK
+          </Link>
+        </div>
+      </div>
       <PaletteFooter
         paletteName={paletteId}
         colorId={`/ ${colorId}`}
