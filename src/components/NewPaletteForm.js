@@ -11,6 +11,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+// import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { ChromePicker } from "react-color";
+
 // import List from "@mui/material/List";
 // import ListItem from "@mui/material/ListItem";
 // import ListItemButton from "@mui/material/ListItemButton";
@@ -70,6 +74,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const NewPaletteForm = () => {
   const [open, setOpen] = useState(true);
+  const [color, setColor] = useState("#008080");
   const theme = useTheme();
 
   const handleDrawerOpen = () => {
@@ -78,6 +83,10 @@ const NewPaletteForm = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleColorChange = (newColor) => {
+    setColor(newColor.hex);
   };
 
   return (
@@ -122,6 +131,22 @@ const NewPaletteForm = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        <Typography variant="h4">Design your Palette</Typography>
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random Color
+          </Button>
+        </div>
+        <ChromePicker
+          color={color}
+          onChange={(newColor) => handleColorChange(newColor)}
+        />
+        <Button variant="contained" color="primary">
+          ADD COLOR
+        </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
