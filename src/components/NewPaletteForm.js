@@ -13,14 +13,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Button from "@mui/material/Button";
 import { ChromePicker } from "react-color";
+import { v4 as uuidv4 } from "uuid";
 
-// import List from "@mui/material/List";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemButton from "@mui/material/ListItemButton";
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
+import DraggableColorBox from "./DraggableColorBox";
 
 // _______________________________________________________
 
@@ -40,7 +35,9 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: 0,
+      margin: theme.spacing(0),
+      padding: 0,
+      height: `calc(100vh - 64px)`,
     }),
   })
 );
@@ -160,11 +157,9 @@ const NewPaletteForm = () => {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <ul>
-          {newColors.map((color) => (
-            <li style={{ backgroundColor: color }}>{color}</li>
-          ))}
-        </ul>
+        {newColors.map((color) => (
+          <DraggableColorBox color={color} key={uuidv4()} />
+        ))}
       </Main>
     </Box>
   );
