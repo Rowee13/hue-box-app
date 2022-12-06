@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import SeedPalettes from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
-
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
@@ -41,7 +42,7 @@ const SingleColorPalette = () => {
 
   const colorBoxex = shades.map((color) => (
     <ColorBox
-      key={`${color.id} ${color.name}`}
+      key={uuidv4()}
       name={color.name}
       background={color[colorFormat]}
       showLink={false}
