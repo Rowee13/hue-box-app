@@ -70,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const NewPaletteForm = () => {
+const NewPaletteForm = ({ savePalette }) => {
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState("teal");
   const [newColors, setNewColors] = useState([
@@ -86,10 +86,10 @@ const NewPaletteForm = () => {
     });
     ValidatorForm.addValidationRule("isColorUnique", () => {
       return newColors.every(
-        ({ color }) => color.toLowerCase() === currentColor.toLowerCase()
+        ({ color }) => color !== currentColor.toLowerCase()
       );
     });
-  }, [newColors, currentColor]);
+  }, [currentColor, newColors]);
 
   const theme = useTheme();
 
@@ -118,10 +118,20 @@ const NewPaletteForm = () => {
     setNewColorName("");
   };
 
+  const handleSavePalette = () => {
+    let newPaletteName = "New Test Palette";
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      colors: newColors,
+    };
+    savePalette(newPalette);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color="default">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -135,6 +145,13 @@ const NewPaletteForm = () => {
           <Typography variant="h6" noWrap component="div">
             Create a Palette
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSavePalette}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -171,7 +188,7 @@ const NewPaletteForm = () => {
         </div>
         <ChromePicker
           color={currentColor}
-          onChange={(newColor) => handleColorPickerChange(newColor)}
+          onChangeComplete={(newColor) => handleColorPickerChange(newColor)}
         />
         <ValidatorForm onSubmit={addNewColor} instantValidate={false}>
           <TextValidator

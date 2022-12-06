@@ -23,6 +23,7 @@ const Palette = () => {
       return palette.id === id;
     });
   };
+  console.log(findPalette());
 
   const palette = generatePalette(findPalette(paletteId));
 
