@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { v4 as uuidv4 } from "uuid";
 
@@ -24,6 +25,11 @@ const Nav = styled.nav`
   width: 100%;
   justify-content: space-between;
   color: white;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: white;
+  }
 `;
 const PaletteDiv = styled.div`
   box-sizing: border-box;
@@ -39,6 +45,7 @@ const PaletteList = ({ palettes }) => {
       <Container>
         <Nav>
           <h1>Hue Box</h1>
+          <Link to="/palette/new">Create New Palette</Link>
         </Nav>
         <PaletteDiv>
           {palettes.map((palette) => (
