@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import SeedPalettes from "../SeedPalettes";
+import { SeedPalettes } from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";

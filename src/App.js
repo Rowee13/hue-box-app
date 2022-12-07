@@ -5,7 +5,7 @@ import PaletteList from "./components/PaletteList";
 import Palette from "./components/Palette";
 import SingleColorPalette from "./components/SingleColorPalette";
 import NewPaletteForm from "./components/NewPaletteForm";
-import SeedPalettes from "./SeedPalettes";
+import { SeedPalettes } from "./SeedPalettes";
 
 // ________________________________________________________________
 

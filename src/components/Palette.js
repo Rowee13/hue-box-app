@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
-import SeedPalettes from "../SeedPalettes";
+import { SeedPalettes } from "../SeedPalettes";
 import { generatePalette } from "../helpers/colorHelper";
 
 import "./Palette.css";
